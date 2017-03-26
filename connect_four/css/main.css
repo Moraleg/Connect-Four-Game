@@ -1,5 +1,4 @@
 * {
-  magrin: 0;
   padding: 0;
   box-sizing: border-box;
 }
@@ -13,70 +12,105 @@ body {
 #title {
   font-size: 40px;
   text-align: center;
-  margin-top: 3%;
-  margin-bottom: 2%;
+  margin-top: 2%;
+  margin-bottom: 15px;;
 }
 
 hr {
   width: 300px;
-  border-color: #f65c5b;
   opacity: 0.7;
-
+  border: 3px solid #f65c5b;
 }
 
 #board{
-  width: 480px;
-  height: 588px;
+  width: 575px;
+  height: 492px;
   margin: 25px auto;
-  border: 1px dashed black;
+  border: 2px solid #d3d3d3;
+  border-radius: 5px;
+  padding: 5px 5px 5px 7px;
+  box-shadow: inset 0px 0px 3px 3px rgba(211, 211, 211, 0.5);
 }
 
 #score-section {
-  border: 1px dashed black;
-  margin: 0 -2px 0 auto;
+  /*border: 1px dashed black;*/
+  margin: 0 auto;
+  display: flex;
+  width: 80%;
 }
 
 #player1 {
-  display: inline-block;
+
+  display: flex;
+  justify-content: space-around;
   width: 40%;
   text-align: center;
-  margin: 0 auto 0 10%;
+  margin: 0 auto;
+  padding-top: 3%;
 }
 
 #player2 {
-  display: inline-block;
+  display: flex;
+  justify-content: space-around;
   width: 40%;
   text-align: center;
-  margin: 0 24px 0 auto;
+  margin: 0 auto;
+  padding-top: 3%;
 }
 #player1-input {
+  width: 126px;
+  height: 24px;
   font-family: 'Dosis', helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   background-color: whitesmoke;
   border: none;
-  border: 1px solid #d3d3d3;
-  border-radius: 5px;
+  border-bottom: 1px solid #d3d3d3;
   text-align: center;
+  padding: 0;
 }
 
 #player2-input {
+  width: 126px;
+  height: 24px;
   font-family: 'Dosis', helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   background-color: whitesmoke;
   border: none;
-  border: 1px solid #d3d3d3;
-  border-radius: 5px;
+  border-bottom: 1px solid #d3d3d3;
   text-align: center;
 }
-.game-squares {
-  border: 1px solid black;
+.game-circles {
+  border: 1px solid #d3d3d3;
+  border-radius: 42px;
+  background-color: white;
   height: 79.5px;
   width: 79.5px;
+  margin: 0;
+  padding: 0;
   display: inline-block;
+  float: left;
+  box-shadow: 0px 0px 1px 1px rgba(211, 211, 211, 0.5)
+
 }
 
+h2 {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+p {
+  display: inline-block;
+  position: absolute;
+  margin-top: 2%;
+  font-size: 30px;
+}
+#player1 p {
+  color: lightsalmon;
+}
 
-
+#player2 p {
+  color: lightskyblue;
+}
 
 /*.disc{
   position:absolute;
