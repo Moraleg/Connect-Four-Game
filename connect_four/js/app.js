@@ -5,12 +5,13 @@ $(function(){ //start window onload
   //event listeners go here
 
   //event listener
-  $('.game-circles').on('click', circlecsClicked);
+  $('.game-circles').on('click', circlesClicked);
 
 }); //end window onload
 
 var salmon = 'lightsalmon';
 var blue = 'lightskyblue';
+var toggle = true;
 
 for (i=1; i <= 42; i++){
   var $gameCircles = $('<div>').attr('id', i);
@@ -21,7 +22,7 @@ for (i=1; i <= 42; i++){
 
 
 
-var circlecsClicked = function(){
+var circlesClicked = function(){
 
   var $discClicked = $(this).attr('id');
   console.log($discClicked);
@@ -30,13 +31,14 @@ var circlecsClicked = function(){
   // var $discAbove = $(this).next('#' + $discAboveId);
 
 
-  if($(this).attr('id') > 35 ){
+  if($(this).attr('id') > 35 && toggle === true){
     $("#" + $discClicked).css('background-color', 'lightsalmon');
+    toggle = false;
+    $(this).off('click', circlesClicked);
+  } else {
+    $("#" + $discClicked).css('background-color', 'lightskyblue');
+    toggle = true;
+    $(this).off('click', circlesClicked);
   }
 
-
-
 };
-
-
-// + $discClicked + "'")
