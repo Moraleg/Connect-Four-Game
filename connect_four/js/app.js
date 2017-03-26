@@ -4,29 +4,39 @@ $(function(){ //start window onload
 
   //event listeners go here
 
+  //event listener
+  $('.game-circles').on('click', circlecsClicked);
 
 }); //end window onload
 
+var salmon = 'lightsalmon';
+var blue = 'lightskyblue';
+
 for (i=1; i <= 42; i++){
-  var $gameCircles = $('<div>').attr('id', 'circle' + i);
+  var $gameCircles = $('<div>').attr('id', i);
   $gameCircles.addClass('game-circles');
   $gameCircles.appendTo('#board');
 }
-var playerTurn = "salmon";
 
-var discColor = function(obj){
-        {
-            if (playerTurn == "salmon")
-            {
-                obj.style.background = "lightsalmon";
-                obj.style.border = "1px solid #d3d3d3";
-            }
-            else
-            {
-                obj.style.backgroundColor = "lightskyblue";
-                obj.style.border = "1px solid #d3d3d3";
-            }
-        }
-      };
 
-  discColor();
+
+
+var circlecsClicked = function(){
+
+  var $discClicked = $(this).attr('id');
+  console.log($discClicked);
+  // var $discNumber = $discClicked - 1;
+  // var $discAboveId = $(this).attr('id') - 7;
+  // var $discAbove = $(this).next('#' + $discAboveId);
+
+
+  if($(this).attr('id') > 35 ){
+    $("#" + $discClicked).css('background-color', 'lightsalmon');
+  }
+
+
+
+};
+
+
+// + $discClicked + "'")
