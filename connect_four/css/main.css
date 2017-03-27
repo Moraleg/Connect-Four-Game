@@ -89,7 +89,7 @@ hr {
   padding: 0;
   display: inline-block;
   float: left;
-  box-shadow: 0px 0px 1px 1px rgba(211, 211, 211, 0.5)
+  box-shadow: 0px 0px 1px 1px rgba(211, 211, 211, 0.5);
 
 }
 
@@ -110,25 +110,6 @@ p {
 }
 
 #player2 p {
-  color: lightskyblue;
+  color: aquamarine;
   margin-top: 25px;
 }
-
-/*.disc{
-  position:absolute;
-  z-index:-1;
-  top:-55px;
-  left:14px;
-  width:46px;
-  height:46px;
-  border-radius:46px;
-  transition:all .3s;
-}
-
-.disc.red{
-  background:#d96666;
-}
-
-.disc.yellow{
-  background:#ffeb79;
-}*/
