@@ -34,7 +34,7 @@ hr {
 
 #score-section {
   /*border: 1px dashed black;*/
-  margin: 0 auto;
+  margin: 0px auto 50px auto;
   display: flex;
   width: 80%;
 }
@@ -106,10 +106,12 @@ p {
 }
 #player1 p {
   color: lightsalmon;
+  margin-top: 25px;
 }
 
 #player2 p {
   color: lightskyblue;
+  margin-top: 25px;
 }
 
 /*.disc{

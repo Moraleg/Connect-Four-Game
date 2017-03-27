@@ -35,7 +35,7 @@ var circlesClicked = function(){
     $("#" + $discClicked).css('background-color', 'lightsalmon');
     toggle = false;
     $(this).off('click', circlesClicked);
-  } else {
+  } else if($(this).attr('id') > 35){
     $("#" + $discClicked).css('background-color', 'lightskyblue');
     toggle = true;
     $(this).off('click', circlesClicked);
