@@ -3,8 +3,13 @@ console.log('connect-four is now connected!');
 $(function(){ //start window onload
 
 
-  //event listener
+  var $clickDivs = $('.clickable');
+  console.log($clickDivs);
 
+  $clickDivs.on('click', clickedCircles);
+
+  var c = $('div').each('id');
+  console.log(c);
 
 }); //end window onload
 
@@ -12,9 +17,11 @@ $(function(){ //start window onload
 // Global Variables
 //===================================
 var salmon = 'lightsalmon';
-var blue = 'lightskyblue';
+var aquamarine = 'aquamarine';
 var toggle = true;
-var $inputBox = $('player1-input');
+
+
+// var $inputBox = $('player1-input');
 
 
 
@@ -25,54 +32,67 @@ var clickedCircles = function(){
 
   var $discClicked = $(this).attr('id');
   console.log($discClicked);
-  var $discAboveId = $discClicked - 7;
-  // console.log($discAboveId);
+  var $aboveDisc = $("#" + ($discClicked - 7));
+  console.log($aboveDisc);
 
-  if($(this).attr('id') > 35 && toggle === true){
-    $("#" + $discClicked).css('background-color', 'lightsalmon');
+
+  if(toggle === true && $("#" + $discClicked).hasClass('clickable')){
+    $("#" + $discClicked).css('background-color', 'lightsalmon').attr('color', 'lightsalmon');
     toggle = false;
     $(this).off('click', clickedCircles);
-  } else if($(this).attr('id') > 35){
-    $("#" + $discClicked).css('background-color', 'aquamarine');
+  } else if(toggle === false && $("#" + $discClicked).hasClass('clickable')){
+    $("#" + $discClicked).css('background-color', 'aquamarine').attr('color', 'aquamarine');
     toggle = true;
     $(this).off('click', clickedCircles);
   }
-
+  $aboveDisc.addClass('clickable').on('click', clickedCircles);
+  var $clickDivs = $('.clickable');
 };
-
-// if (id > 35 && ){
-//   bottom row is clickable, fill bottom row. take id -7 and add class to current statement - 7
-// } else (){
-//
-// }
 
 //===================================
 // Gameboard divs
 //===================================
 //create divs for gameboard
 for (i=1; i <= 42; i++){
-  var $gameCircles = $('<div>').attr('id', i);
+  var $gameCircles = $('<div>').attr('id', i).text(i);
   $gameCircles.addClass('game-circles');
   $gameCircles.appendTo('#board');
-  $gameCircles.on('click', clickedCircles);
+  if (i > 35){
+    $gameCircles.addClass('clickable');
+  }
 }
 
 
-var winningStatesArr = [  // array of arrays of all the winning combinations
+//===================================
+// Winning Possibilities
+//===================================
+var winningArr = [  // array of arrays of all the winning combinations
   // rows
-  ['1', '2', '3', '4'], ['2', '3', '4', '5'],
-  ['8', '9', '10', '11'], ['9', '10', '11', '12'],
-  ['15', '16', '17', '18'], ['16', '17', '18', '19'],
-  ['22', '23', '24', '25'], ['23', '24', '25', '26'],
-  ['29', '30', '31', '32'], ['30', '31', '32', '33'],
-  ['36', '37', '38', '39'], ['37', '38', '39', '40'],
+  ['1', '2', '3', '4'],
+  ['2', '3', '4', '5'],
+  ['8', '9', '10', '11'],
+  ['9', '10', '11', '12'],
+  ['15', '16', '17', '18'],
+  ['16', '17', '18', '19'],
+  ['22', '23', '24', '25'],
+  ['23', '24', '25', '26'],
+  ['29', '30', '31', '32'],
+  ['30', '31', '32', '33'],
+  ['36', '37', '38', '39'],
+  ['37', '38', '39', '40'],
 
-  ['3', '4', '5', '6'], ['4', '5', '6', '7'],
-  ['10', '11', '12', '13'], ['11', '12', '13', '14'],
-  ['17', '18', '19', '20'], ['18', '19', '20', '21'],
-  ['24', '25', '26', '27'], ['25', '26', '27', '28'],
-  ['31', '32', '33', '34'], ['32', '33', '34', '35'],
-  ['38', '39', '40', '41'], ['39', '40', '41', '42'],
+  ['3', '4', '5', '6'],
+  ['4', '5', '6', '7'],
+  ['10', '11', '12', '13'],
+  ['11', '12', '13', '14'],
+  ['17', '18', '19', '20'],
+  ['18', '19', '20', '21'],
+  ['24', '25', '26', '27'],
+  ['25', '26', '27', '28'],
+  ['31', '32', '33', '34'],
+  ['32', '33', '34', '35'],
+  ['38', '39', '40', '41'],
+  ['39', '40', '41', '42'],
   // columns
   ['1', '8', '15', '22'],
   ['2', '9', '16', '23'],
@@ -127,35 +147,10 @@ var winningStatesArr = [  // array of arrays of all the winning combinations
 
 ];
 
-//iterating through winningStatesArr
-  for(var i = 0; i < winningStatesArr.length; i++){
-      for(var j = 0; j < winningStatesArr[i].length; j++){
-
-          console.log(winningStatesArr[i][j]);
-      }
-  }
-
-// 
-// var exampleArr = [
-//   ['0','0','0','0','0','0','0'],
-//   ['0','0','0','0','0','0','0'],
-//   ['0','0','0','0','0','0','0'],
-//   ['0','0','0','0','0','0','0'],
-//   ['0','0','0','0','0','0','0'],
-//   ['0','0','0','0','0','0','0'],
-//   ['0','0','0','0','0','0','0'],
-// ];
+// //iterating through winningStatesArr
+//   for(var i = 0; i < winningArr.length; i++){
+//       for(var j = 0; j < winningArr[i].length; j++){
 //
-//
-// var exampleArr = [
-//   [1,2,3,4,5,6,7],
-//   [8,9,10,11,12,13,14],
-//   [15,16,17,18,19,20,21],
-//   [22,23,24,25,26,27,28],
-//   [29,30,31,32,33,34,35],
-//   [36,37,38,39,40,41,42]
-//
-// ];
-//
-// console.log(exampleArr[1][1]=0);
-// console.log(exampleArr);
+//           console.log(winningArr[i][j]);
+//       }
+//   }
