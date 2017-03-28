@@ -8,9 +8,6 @@ $(function(){ //start window onload
 
   $clickDivs.on('click', clickedCircles);
 
-  var c = $('div').each('id');
-  console.log(c);
-
 }); //end window onload
 
 //===================================
@@ -19,11 +16,24 @@ $(function(){ //start window onload
 var salmon = 'lightsalmon';
 var aquamarine = 'aquamarine';
 var toggle = true;
+var orange = [];
+var aqua = [];
 
 
-// var $inputBox = $('player1-input');
 
 
+var checkWin = function(){
+  for (var i = 0; i < winningArr.length; i++) {
+    for (var j = 0; j < winningArr[i].length; j++) {
+      for (var m = 0; m < orange.length; m++) {
+        if(  winningArr[i][j] == orange[m]   )
+        { console.log(winningArr[i]);
+          console.log(orange[m]);
+        }
+      }
+    }
+  }
+};
 
 //===================================
 // Event Handler
@@ -31,19 +41,24 @@ var toggle = true;
 var clickedCircles = function(){
 
   var $discClicked = $(this).attr('id');
-  console.log($discClicked);
+  // console.log($discClicked);
   var $aboveDisc = $("#" + ($discClicked - 7));
-  console.log($aboveDisc);
+  // console.log($aboveDisc);
 
 
   if(toggle === true && $("#" + $discClicked).hasClass('clickable')){
-    $("#" + $discClicked).css('background-color', 'lightsalmon').attr('color', 'lightsalmon');
+    $("#" + $discClicked).css('background-color', 'lightsalmon');
     toggle = false;
     $(this).off('click', clickedCircles);
+    orange.push($discClicked);
+    checkWin();
+    console.log(orange);
   } else if(toggle === false && $("#" + $discClicked).hasClass('clickable')){
-    $("#" + $discClicked).css('background-color', 'aquamarine').attr('color', 'aquamarine');
+    $("#" + $discClicked).css('background-color', 'aquamarine');
     toggle = true;
     $(this).off('click', clickedCircles);
+    aqua.push($discClicked);
+    console.log(aqua);
   }
   $aboveDisc.addClass('clickable').on('click', clickedCircles);
   var $clickDivs = $('.clickable');
@@ -146,11 +161,3 @@ var winningArr = [  // array of arrays of all the winning combinations
   ['18', '24', '30', '36'],
 
 ];
-
-// //iterating through winningStatesArr
-//   for(var i = 0; i < winningArr.length; i++){
-//       for(var j = 0; j < winningArr[i].length; j++){
-//
-//           console.log(winningArr[i][j]);
-//       }
-//   }
