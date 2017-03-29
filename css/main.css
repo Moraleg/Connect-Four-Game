@@ -12,7 +12,7 @@ body {
 #title {
   font-size: 40px;
   text-align: center;
-  margin-top: 2%;
+  margin-top: 4%;
   margin-bottom: 15px;
 }
 
@@ -25,7 +25,7 @@ hr {
 #board{
   width: 575px;
   height: 492px;
-  margin: 25px auto;
+  margin: 40px auto;
   border: 2px solid #d3d3d3;
   border-radius: 5px;
   padding: 5px 5px 5px 7px;
