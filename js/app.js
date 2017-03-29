@@ -8,6 +8,17 @@ $(function(){ //start window onload
 
   $clickDivs.on('click', clickedCircles); //event listener
 
+  $('#player1-input').on('keypress', function(e){
+    var $inputText = $(this).val();
+    console.log($inputText);
+    var $h2 = $('<h2>').text($inputText);
+    console.log($('#player1-input').hide().appendTo($h2));
+    if (e.keyCode == 13){
+      console.log('enter works!');
+      return false;
+    }
+  });
+
 }); //end window onload
 
 //===================================
@@ -18,7 +29,9 @@ var aquamarine = 'aquamarine';
 var toggle = true;
 var orange = [];
 var aqua = [];
-
+var playerOne = 0;
+var playerTwo = 0;
+var $inputBox = ('#player1-input');
 //===================================
 // Event Handler
 //===================================
@@ -50,6 +63,13 @@ var clickedCircles = function(){
   var $clickDivs = $('.clickable'); //setting the clickable class to a variable
 };
 
+// var submitInput = function (){
+//   // var $inputText = $inputBox.val();
+//   // $h2 = $('<h2>');
+//   // $inputBox.hide();
+//   // $h2.appendTo($inputText);
+//   console.log('keypress works!');
+// };
 //===================================
 // Gameboard divs
 //===================================
@@ -159,15 +179,23 @@ var checkWin = function(array){
           console.log(array[m]);
         }
       }
-        if(connectFour == 4){
-          console.log('You\'ve won!');
+        if(connectFour == 4 && toggle === false){
+          playerOne++;
+          $('#p1-score').append().text(playerOne);
+          console.log(playerOne);
+          alert('Player 1 wins!');
+          return;
+        } else if(connectFour == 4 && toggle === true){
+          playerTwo++;
+            $('#p2-score').append().text(playerTwo);
+            alert('Player 2 wins!');
           return;
         }
     }
   }
 };
 
-
+clickedCircles();
 //THINGS TO DO:
 
 //need to get player score working
