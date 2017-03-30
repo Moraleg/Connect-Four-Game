@@ -113,3 +113,10 @@ p {
   color: aquamarine;
   margin-top: 25px;
 }
+
+.playerone-color {
+  background-color: lightsalmon;
+}
+.playertwo-color {
+  background-color: aquamarine;
+}

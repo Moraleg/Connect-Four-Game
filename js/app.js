@@ -8,24 +8,24 @@ $(function(){ //start window onload
 
   $clickDivs.on('click', clickedCircles); //event listener
 
-  $('#player1-input').on('keypress', function(e){
-    var $inputText = $(this).val(); //saving input value to variable
-    var $h2 = $('<h2>').text($inputText);
-    // console.log($('#player1-input').hide().appendTo($h2));
-    if (e.keyCode == 13){ // Enter keypress working instead of submit button
-      console.log($inputText);
-      return false;
-    }
-  });
-
-  $('#player2-input').on('keypress', function(e){
-    var $inputText2 = $(this).val(); //saving input value to variable
-    if (e.keyCode == 13){ // Enter keypress working instead of submit button
-      console.log($inputText2);
-      return false;
-    }
-
-  });
+  // $('#player1-input').on('keypress', function(e){
+  //   var $inputText = $(this).val(); //saving input value to variable
+  //   var $h2 = $('<h2>').text($inputText);
+  //   // console.log($('#player1-input').hide().appendTo($h2));
+  //   if (e.keyCode == 13){ // Enter keypress working instead of submit button
+  //     console.log($inputText);
+  //     return false;
+  //   }
+  // });
+  //
+  // $('#player2-input').on('keypress', function(e){
+  //   var $inputText2 = $(this).val(); //saving input value to variable
+  //   if (e.keyCode == 13){ // Enter keypress working instead of submit button
+  //     console.log($inputText2);
+  //     return false;
+  //   }
+  //
+  // });
 
 }); //end window onload
 
@@ -50,25 +50,26 @@ var clickedCircles = function(){
   var $aboveDisc = $("#" + ($discClicked - 7)); //grabs the div # in row above the clicked one
   // console.log($aboveDisc);
 
-
   if(toggle === true && $("#" + $discClicked).hasClass('clickable')){
-    $("#" + $discClicked).css('background-color', 'lightsalmon');
+    $("#" + $discClicked).addClass('playerone-color');
     toggle = false; //toggles players turn
     $(this).off('click', clickedCircles); // this is div id- turns click off
     // console.log($(this));
     orange.push($discClicked); //pushes id values into an array
     // console.log(orange + ' this is orange');
+    $aboveDisc.addClass('clickable').on('click', clickedCircles);
     checkWin(orange);
   } else if(toggle === false && $("#" + $discClicked).hasClass('clickable')){
-    $("#" + $discClicked).css('background-color', 'aquamarine');
+    $("#" + $discClicked).addClass('playertwo-color');
     toggle = true; //toggles players turn
     $(this).off('click', clickedCircles);
     aqua.push($discClicked); //pushes id values into an array
     // console.log(aqua + " this is aqua");
+    $aboveDisc.addClass('clickable').on('click', clickedCircles); //adds class of clickable on click
     checkWin(aqua);
   }
-  $aboveDisc.addClass('clickable').on('click', clickedCircles); //adds class of clickable on click
-  var $clickDivs = $('.clickable'); //setting the clickable class to a variable
+
+
 };
 
 
@@ -168,9 +169,14 @@ var winningArr = [  // array of arrays of all the winning combinations
 ];
 
 var reset = function(){
-  for (var l = 0; l < $("#" + $discClicked).css('background-color', 'lightsalmon').length; l++) {
-    $("#" + $discClicked).css('background-color', 'lightsalmon').eq(l).empty();
-  }
+  console.log('reset is working');
+  $('.game-circles').removeClass('playerone-color');
+  $("#" + ($(this).attr('id') - 7)).removeClass('clickable');
+  orange = [];
+  $('.game-circles').removeClass('playertwo-color');
+  aqua = [];
+  $('.game-circles').on('click', clickedCircles);
+
 };
 
 //===================================
@@ -192,17 +198,18 @@ var checkWin = function(array){
           $('#p1-score').append().text(playerOne);
           console.log(playerOne);
           alert('Player 1 wins!');
+          reset();
           return;
         } else if(connectFour == 4 && toggle === true){
           playerTwo++;
           $('#p2-score').append().text(playerTwo);
           alert('Player 2 wins!');
+          reset();
           return;
         }
     }
   }
 };
-
 
 //THINGS TO DO:
 
