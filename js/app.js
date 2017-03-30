@@ -9,14 +9,22 @@ $(function(){ //start window onload
   $clickDivs.on('click', clickedCircles); //event listener
 
   $('#player1-input').on('keypress', function(e){
-    var $inputText = $(this).val();
-    console.log($inputText);
+    var $inputText = $(this).val(); //saving input value to variable
     var $h2 = $('<h2>').text($inputText);
-    console.log($('#player1-input').hide().appendTo($h2));
-    if (e.keyCode == 13){
-      console.log('enter works!');
+    // console.log($('#player1-input').hide().appendTo($h2));
+    if (e.keyCode == 13){ // Enter keypress working instead of submit button
+      console.log($inputText);
       return false;
     }
+  });
+
+  $('#player2-input').on('keypress', function(e){
+    var $inputText2 = $(this).val(); //saving input value to variable
+    if (e.keyCode == 13){ // Enter keypress working instead of submit button
+      console.log($inputText2);
+      return false;
+    }
+
   });
 
 }); //end window onload
@@ -49,27 +57,21 @@ var clickedCircles = function(){
     $(this).off('click', clickedCircles); // this is div id- turns click off
     // console.log($(this));
     orange.push($discClicked); //pushes id values into an array
-    console.log(orange + ' this is orange');
+    // console.log(orange + ' this is orange');
     checkWin(orange);
   } else if(toggle === false && $("#" + $discClicked).hasClass('clickable')){
     $("#" + $discClicked).css('background-color', 'aquamarine');
     toggle = true; //toggles players turn
     $(this).off('click', clickedCircles);
     aqua.push($discClicked); //pushes id values into an array
-    console.log(aqua + " this is aqua");
-      checkWin(aqua);
+    // console.log(aqua + " this is aqua");
+    checkWin(aqua);
   }
   $aboveDisc.addClass('clickable').on('click', clickedCircles); //adds class of clickable on click
   var $clickDivs = $('.clickable'); //setting the clickable class to a variable
 };
 
-// var submitInput = function (){
-//   // var $inputText = $inputBox.val();
-//   // $h2 = $('<h2>');
-//   // $inputBox.hide();
-//   // $h2.appendTo($inputText);
-//   console.log('keypress works!');
-// };
+
 //===================================
 // Gameboard divs
 //===================================
@@ -165,15 +167,21 @@ var winningArr = [  // array of arrays of all the winning combinations
 
 ];
 
+var reset = function(){
+  for (var l = 0; l < $("#" + $discClicked).css('background-color', 'lightsalmon').length; l++) {
+    $("#" + $discClicked).css('background-color', 'lightsalmon').eq(l).empty();
+  }
+};
+
 //===================================
 // Win function
 //===================================
 var checkWin = function(array){
   for (var i = 0; i < winningArr.length; i++) { // winning arrays
-    var connectFour = 0;
+    var connectFour = 0;//initialize
     for (var j = 0; j < winningArr[i].length; j++) { // individual values in each array
-      for (var m = 0; m < array.length; m++) { //salmon player array values
-        if(  winningArr[i][j] == array[m]){ //comparison between winning and salmon array
+      for (var m = 0; m < array.length; m++) { //salmon and aqua player array values
+        if(  winningArr[i][j] == array[m]){ //comparison between winning and salmon/aqua array
           connectFour++;
           console.log(winningArr[i]);
           console.log(array[m]);
@@ -187,17 +195,17 @@ var checkWin = function(array){
           return;
         } else if(connectFour == 4 && toggle === true){
           playerTwo++;
-            $('#p2-score').append().text(playerTwo);
-            alert('Player 2 wins!');
+          $('#p2-score').append().text(playerTwo);
+          alert('Player 2 wins!');
           return;
         }
     }
   }
 };
 
-clickedCircles();
+
 //THINGS TO DO:
 
-//need to get player score working
 //need to figure out player name input box thingy
 // winning round and winning game message
+//clearboard
