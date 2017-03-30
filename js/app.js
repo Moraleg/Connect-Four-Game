@@ -8,24 +8,28 @@ $(function(){ //start window onload
 
   $clickDivs.on('click', clickedCircles); //event listener
 
-  // $('#player1-input').on('keypress', function(e){
-  //   var $inputText = $(this).val(); //saving input value to variable
-  //   var $h2 = $('<h2>').text($inputText);
-  //   // console.log($('#player1-input').hide().appendTo($h2));
-  //   if (e.keyCode == 13){ // Enter keypress working instead of submit button
-  //     console.log($inputText);
-  //     return false;
-  //   }
-  // });
-  //
-  // $('#player2-input').on('keypress', function(e){
-  //   var $inputText2 = $(this).val(); //saving input value to variable
-  //   if (e.keyCode == 13){ // Enter keypress working instead of submit button
-  //     console.log($inputText2);
-  //     return false;
-  //   }
-  //
-  // });
+  $('#player1-input').on('keypress', function(e){
+    var $inputText = $(this).val(); //saving input value to variable
+    if (e.keyCode == 13){ // Enter keypress working instead of submit button
+
+      $h2 = $('<h2>').text($(this).val()).appendTo('player1');
+      console.log($inputText);
+      $('#player1').append('<span>' + $(this).val() + '</span>');
+      $('#player1-input').hide();
+      return false;
+    }
+  });
+
+  $('#player2-input').on('keypress', function(e){
+    var $inputText2 = $(this).val(); //saving input value to variable
+    if (e.keyCode == 13){ // Enter keypress working instead of submit button
+      $('#player2').append('<span>' + $(this).val() + '</span>')
+      $('#player2-input').hide();
+      console.log($inputText2);
+      return false;
+    }
+
+  });
 
 }); //end window onload
 
@@ -169,14 +173,14 @@ var winningArr = [  // array of arrays of all the winning combinations
 ];
 
 var reset = function(){
-  console.log('reset is working');
-  $('.game-circles').removeClass('playerone-color');
-  $("#" + ($(this).attr('id') - 7)).removeClass('clickable');
-  orange = [];
-  $('.game-circles').removeClass('playertwo-color');
-  aqua = [];
-  $('.game-circles').on('click', clickedCircles);
-
+  // console.log('reset is working');
+  // $('.game-circles').removeClass('playerone-color');
+  // $("#" + ($(this).attr('id') - 7)).removeClass('clickable');
+  // orange = [];
+  // $('.game-circles').removeClass('playertwo-color');
+  // aqua = [];
+  // $('.game-circles').on('click', clickedCircles);
+  location.reload();
 };
 
 //===================================
