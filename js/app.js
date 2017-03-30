@@ -2,12 +2,13 @@ console.log('connect-four is now connected!');
 
 $(function(){ //start window onload
 
-
-  var $clickDivs = $('.clickable');//class for
+  var $clickDivs = $('.clickable');//class that will be added to click divs
   // console.log($clickDivs);
+  $clickDivs.on('click', clickedCircles); //event listener to click divs
 
-  $clickDivs.on('click', clickedCircles); //event listener
-
+  //===================================
+  // Player Name Input
+  //===================================
   $('#player1-input').on('keypress', function(e){
     var $inputText = $(this).val(); //saving input value to variable
     if (e.keyCode == 13){ // Enter keypress working instead of submit button
@@ -23,7 +24,7 @@ $(function(){ //start window onload
   $('#player2-input').on('keypress', function(e){
     var $inputText2 = $(this).val(); //saving input value to variable
     if (e.keyCode == 13){ // Enter keypress working instead of submit button
-      $('#player2').append('<span>' + $(this).val() + '</span>')
+      $('#player2').append('<span>' + $(this).val() + '</span>');
       $('#player2-input').hide();
       console.log($inputText2);
       return false;
@@ -36,20 +37,32 @@ $(function(){ //start window onload
 //===================================
 // Global Variables
 //===================================
-var salmon = 'lightsalmon';
-var aquamarine = 'aquamarine';
 var toggle = true;
 var orange = [];
 var aqua = [];
 var playerOne = 0;
 var playerTwo = 0;
-var $inputBox = ('#player1-input');
+
+//===================================
+// Gameboard divs
+//===================================
+//create divs for gameboard
+for (i=1; i <= 42; i++){
+  var $gameCircles = $('<div>').attr('id', i);
+  $gameCircles.addClass('game-circles'); //adds class that creates circles
+  $gameCircles.appendTo('#board'); //appends the divs to the board
+  if (i > 35){
+    $gameCircles.addClass('clickable'); //adds clickable class to the last row.
+  }
+}
+
+
 //===================================
 // Event Handler
 //===================================
 var clickedCircles = function(){
 
-  var $discClicked = $(this).attr('id'); //div id #
+  var $discClicked = $(this).attr('id'); //div id # for divs
   // console.log($discClicked);
   var $aboveDisc = $("#" + ($discClicked - 7)); //grabs the div # in row above the clicked one
   // console.log($aboveDisc);
@@ -75,20 +88,6 @@ var clickedCircles = function(){
 
 
 };
-
-
-//===================================
-// Gameboard divs
-//===================================
-//create divs for gameboard
-for (i=1; i <= 42; i++){
-  var $gameCircles = $('<div>').attr('id', i);
-  $gameCircles.addClass('game-circles'); //adds class that creates circles
-  $gameCircles.appendTo('#board'); //appends the divs to the board
-  if (i > 35){
-    $gameCircles.addClass('clickable'); //adds clickable class to the last row.
-  }
-}
 
 
 //===================================
@@ -172,17 +171,6 @@ var winningArr = [  // array of arrays of all the winning combinations
 
 ];
 
-var reset = function(){
-  // console.log('reset is working');
-  // $('.game-circles').removeClass('playerone-color');
-  // $("#" + ($(this).attr('id') - 7)).removeClass('clickable');
-  // orange = [];
-  // $('.game-circles').removeClass('playertwo-color');
-  // aqua = [];
-  // $('.game-circles').on('click', clickedCircles);
-  location.reload();
-};
-
 //===================================
 // Win function
 //===================================
@@ -215,8 +203,22 @@ var checkWin = function(array){
   }
 };
 
-//THINGS TO DO:
+//===================================
+// Reset function
+//===================================
 
-//need to figure out player name input box thingy
+var reset = function(){
+  // console.log('reset is working');
+  // $('.game-circles').removeClass('playerone-color');
+  // $("#" + ($(this).attr('id') - 7)).removeClass('clickable');
+  // orange = [];
+  // $('.game-circles').removeClass('playertwo-color');
+  // aqua = [];
+  // $('.game-circles').on('click', clickedCircles);
+  location.reload();
+};
+
+
+//THINGS TO DO:
 // winning round and winning game message
 //clearboard
