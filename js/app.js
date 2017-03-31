@@ -199,7 +199,7 @@ var checkWin = function(array){
           alert('Player 2 wins!');
           reset();
           return;
-        }
+        } 
     }
   }
 };
