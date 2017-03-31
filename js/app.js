@@ -2,7 +2,7 @@ console.log('connect-four is now connected!');
 
 $(function(){ //start window onload
 
-  var $clickDivs = $('.clickable');//class that will be added to click divs
+  var $clickDivs = $('.clickable');//class that will be added to click divs set to var.
   // console.log($clickDivs);
   $clickDivs.on('click', clickedCircles); //event listener to click divs
 
@@ -62,7 +62,7 @@ for (i=1; i <= 42; i++){
 //===================================
 var clickedCircles = function(){
 
-  var $discClicked = $(this).attr('id'); //div id # for divs
+  var $discClicked = $(this).attr('id'); //div id # for divs saved to var.
   // console.log($discClicked);
   var $aboveDisc = $("#" + ($discClicked - 7)); //grabs the div # in row above the clicked one
   // console.log($aboveDisc);
@@ -74,8 +74,8 @@ var clickedCircles = function(){
     // console.log($(this));
     orange.push($discClicked); //pushes id values into an array
     // console.log(orange + ' this is orange');
-    $aboveDisc.addClass('clickable').on('click', clickedCircles);
-    checkWin(orange);
+    $aboveDisc.addClass('clickable').on('click', clickedCircles); //adds clickable class to above discs
+    checkWin(orange); //goes to checkwin function
   } else if(toggle === false && $("#" + $discClicked).hasClass('clickable')){
     $("#" + $discClicked).addClass('playertwo-color');
     toggle = true; //toggles players turn
@@ -83,7 +83,7 @@ var clickedCircles = function(){
     aqua.push($discClicked); //pushes id values into an array
     // console.log(aqua + " this is aqua");
     $aboveDisc.addClass('clickable').on('click', clickedCircles); //adds class of clickable on click
-    checkWin(aqua);
+    checkWin(aqua); //goes to checkwin function
   }
 
 
@@ -199,7 +199,7 @@ var checkWin = function(array){
           alert('Player 2 wins!');
           reset();
           return;
-        } 
+        }
     }
   }
 };

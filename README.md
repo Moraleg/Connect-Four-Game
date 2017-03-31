@@ -16,9 +16,10 @@ To summarize my approach for the development of this game- I created a board wit
 Link to site:
 https://moraleg.github.io/Connect-Four-Game/
 
-Improvements:
+Improvements/ Issues:
 - Making the game responsive to allow play on all platforms.
-- Adding DOM alerts.
+- Adding DOM alerts, rather than pop up alerts.
 - Allowing a reset of the board only, rather than the entire game.
+- Creating a tie alert
 - Adding animation features to make it more lively.
 - Creating levels with different themes.
