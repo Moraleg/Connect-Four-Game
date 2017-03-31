@@ -189,6 +189,7 @@ var checkWin = function(array){
           playerOne++;
           $('#p1-score').append().text(playerOne);
           console.log(playerOne);
+          // setTimeout(alert('Player 1 wins!'), 4000);
           alert('Player 1 wins!');
           reset();
           return;
@@ -203,6 +204,7 @@ var checkWin = function(array){
   }
 };
 
+
 //===================================
 // Reset function
 //===================================
@@ -215,7 +217,7 @@ var reset = function(){
   // $('.game-circles').removeClass('playertwo-color');
   // aqua = [];
   // $('.game-circles').on('click', clickedCircles);
-  location.reload();
+  setTimeout(location.reload.bind(location),2000);
 };
 
 
