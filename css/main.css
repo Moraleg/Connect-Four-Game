@@ -3,10 +3,26 @@
   box-sizing: border-box;
 }
 
+@font-face {
+   font-family: 'Apercu-Bold';
+   src: url('../fonts/Apercu-Bold.otf') format('otf'),
+   font-style: normal;
+}
+@font-face {
+   font-family: 'Apercu-Bold';
+   src: url('../fonts/Apercu-Bold.ttf') format('ttf'),
+   font-style: normal;
+}
+
+::-moz-selection { background-color: rgba(207,203,245,0.25);}
+::selection { background-color: rgba(207,203,245,0.25); }
+
+
 body {
-  background-color: whitesmoke;
-  font-family: 'Dosis', helvetica, sans-serif;
+  font-family: "Apercu-Bold", helvetica, sans-serif;
   max-width: 100%;
+  background-color: #2B2334;
+  color: #fff;
 }
 
 #title {
@@ -14,33 +30,29 @@ body {
   text-align: center;
   margin-top: 4%;
   margin-bottom: 15px;
+  color: #fff;
 }
 
 hr {
-  width: 300px;
+  width: 200px;
   opacity: 0.7;
-  border: 3px solid #f65c5b;
+  border: 2px solid #ff8181;
 }
 
 #board{
-  width: 575px;
+  max-width: 635px;
   height: 492px;
   margin: 40px auto;
-  border: 2px solid #d3d3d3;
-  border-radius: 5px;
   padding: 5px 5px 5px 7px;
-  box-shadow: inset 0px 0px 3px 3px rgba(211, 211, 211, 0.5);
 }
 
 #score-section {
-  /*border: 1px dashed black;*/
   margin: 0px auto 50px auto;
   display: flex;
   width: 80%;
 }
 
 #player1 {
-
   display: flex;
   justify-content: space-around;
   width: 40%;
@@ -58,39 +70,50 @@ hr {
   padding-top: 3%;
 }
 #player1-input {
-  width: 126px;
-  height: 24px;
-  font-family: 'Dosis', helvetica, sans-serif;
-  font-size: 16px;
-  background-color: whitesmoke;
-  border: none;
-  border-bottom: 1px solid #d3d3d3;
-  text-align: center;
-  padding: 0;
+    width: 125px;
+    font-family: 'Apercu-Bold', helvetica, sans-serif;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ffffff26;
+    text-align: center;
 }
 
-#player2-input {
-  width: 126px;
-  height: 24px;
-  font-family: 'Dosis', helvetica, sans-serif;
-  font-size: 16px;
-  background-color: whitesmoke;
-  border: none;
-  border-bottom: 1px solid #d3d3d3;
-  text-align: center;
+#player1-input:hover {
+  border-bottom: 1px solid #fff;
+  transition: all 0.5s;
 }
+
+input:hover {
+  border-bottom: 1px solid #fff;
+  transition: all 0.5s;
+}
+
+input {
+    width: 125px;
+    font-family: 'Apercu-Bold', helvetica, sans-serif;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ffffff26;
+    text-align: center;
+}
+
 .game-circles {
-  border: 1px solid #d3d3d3;
   border-radius: 42px;
-  background-color: white;
-  height: 79.5px;
-  width: 79.5px;
-  margin: 0;
+  background-color: #413949;
+  height: 68.5px;
+  width: 68.5px;
+  margin: 10px;
   padding: 0;
   display: inline-block;
   float: left;
-  box-shadow: 0 0 1px 1px rgba(211, 211, 211, 0.5);
+}
 
+.game-circles:hover {
+  /* background-color: #a59ead; */
+  transform: scale(1.2);
+  transition: all 0.5s;
 }
 
 h2 {
@@ -105,17 +128,19 @@ p {
   font-size: 30px;
 }
 #player1 p {
-  color: lightsalmon;
+  color: #ff8181;
   margin-top: 25px;
+  padding-top: 20px;
 }
 
 #player2 p {
-  color: aquamarine;
+  color: #7fd5ff;
   margin-top: 25px;
+  padding-top: 20px;
 }
 
 .playerone-color {
-  background-color: lightsalmon;
+  background-color: #ff8181;
   animation-name: bounce;
   animation-duration: 1s;
 }
@@ -127,11 +152,32 @@ p {
 }
 
 .playertwo-color {
-  background-color: aquamarine;
+  background-color: #7fd5ff;
   animation-name: bounce;
   animation-duration: 1s;
 }
 
 span {
   font-size: 18px;
+}
+
+input#player1-input{
+  color: #fff;
+}
+
+input#player2-input{
+  color: #fff;
+}
+
+
+@media only screen and (max-width : 768px) {
+
+.game-circles {
+  height: 10vw;
+  width: 10vw;
+  }
+
+#title {
+  font-size: 7vw;
+  }
 }
